@@ -1,3 +1,5 @@
+ -- loadstring(game:HttpGet"https://raw.githubusercontent.com/orruunestad/privatehub/refs/heads/main/whitelist")()
+
 ---- Whitelist system source ----
 local whitelist = {
     Usernames = {
