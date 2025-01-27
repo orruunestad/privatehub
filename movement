@@ -1,1 +1,198 @@
+loadstring(game:HttpGet"https://raw.githubusercontent.com/orruunestad/privatehub/refs/heads/main/whitelist")()
 
+local UIS = game:GetService("UserInputService")
+
+local Player = game.Players.LocalPlayer
+local Mouse = Player:GetMouse()
+
+
+function GetCharacter()
+   return game.Players.LocalPlayer.Character
+end
+
+function Teleport(pos)
+   local Char = GetCharacter()
+   if Char then
+       Char:MoveTo(pos)
+   end
+end
+
+
+UIS.InputBegan:Connect(function(input)
+   if input.UserInputType == Enum.UserInputType.MouseButton1 and UIS:IsKeyDown(Enum.KeyCode.LeftControl) then
+       Teleport(Mouse.Hit.p)
+   end
+end)
+
+
+
+ -- loadstring(game:HttpGet("https://pastebin.com/raw/AbDM2er1"))()
+
+pcall(loadstring(game:HttpGet("https://pastebin.com/raw/2wgbZ6Xd")))
+
+
+
+
+
+
+ -- Atomic Samurai Cutscene, Press F1
+ local UIS = game:GetService("UserInputService")
+local Player = game:GetService("Players").LocalPlayer
+
+-- Set your target coordinates here
+local targetPosition = Vector3.new(1046, 20, 22997) -- Change this to your desired coordinates
+
+-- Function to teleport the player
+local function teleportToCoordinates()
+    local character = Player.Character
+    if character then
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+        rootPart.CFrame = CFrame.new(targetPosition)
+    end
+end
+
+-- Listen for key press to trigger teleportation
+UIS.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == Enum.KeyCode.F1 then
+        teleportToCoordinates()
+    end
+end)
+
+
+
+
+
+
+ -- Death Counter Cutscene, Press F2
+ local UIS = game:GetService("UserInputService")
+local Player = game:GetService("Players").LocalPlayer
+
+-- Set your target coordinates here
+local targetPosition = Vector3.new(-87, 29, 20346) -- Change this to your desired coordinates
+
+-- Function to teleport the player
+local function teleportToCoordinates()
+    local character = Player.Character
+    if character then
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+        rootPart.CFrame = CFrame.new(targetPosition)
+    end
+end
+
+-- Listen for key press to trigger teleportation
+UIS.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == Enum.KeyCode.F2 then
+        teleportToCoordinates()
+    end
+end)
+
+
+
+
+
+
+ -- Teleport back to the center of map, press Z
+ local UIS = game:GetService("UserInputService")
+local Player = game:GetService("Players").LocalPlayer
+
+-- Set your target coordinates here
+local targetPosition = Vector3.new(170, 440, -29) -- Change this to your desired coordinates
+
+-- Function to teleport the player
+local function teleportToCoordinates()
+    local character = Player.Character
+    if character then
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+        rootPart.CFrame = CFrame.new(targetPosition)
+    end
+end
+
+-- Listen for key press to trigger teleportation
+UIS.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == Enum.KeyCode.T then
+        teleportToCoordinates()
+    end
+end)
+
+
+
+
+
+ -- Teleport in void to kill people, press C
+ local UIS = game:GetService("UserInputService")
+local Player = game:GetService("Players").LocalPlayer
+
+-- Set your target coordinates here
+local targetPosition = Vector3.new(10000, 50000000000, 0) -- Change this to your desired coordinates
+
+-- Function to teleport the player
+local function teleportToCoordinates()
+    local character = Player.Character
+    if character then
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+        rootPart.CFrame = CFrame.new(targetPosition)
+    end
+end
+
+-- Listen for key press to trigger teleportation
+UIS.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == Enum.KeyCode.C then
+        teleportToCoordinates()
+    end
+end)
+
+
+
+
+
+
+ -- Mountain Teleport, Press X
+ local UIS = game:GetService("UserInputService")
+local Player = game:GetService("Players").LocalPlayer
+
+-- Set your target coordinates here
+local targetPosition = Vector3.new(-17, 652, -403) -- Change this to your desired coordinates
+
+-- Function to teleport the player
+local function teleportToCoordinates()
+    local character = Player.Character
+    if character then
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+        rootPart.CFrame = CFrame.new(targetPosition)
+    end
+end
+
+-- Listen for key press to trigger teleportation
+UIS.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == Enum.KeyCode.X then
+        teleportToCoordinates()
+    end
+end)
+
+
+
+
+
+
+ -- Rock Teleport, Press `
+ local UIS = game:GetService("UserInputService")
+local Player = game:GetService("Players").LocalPlayer
+
+-- Set your target coordinates here
+local targetPosition = Vector3.new(-137, 439, -362) -- Change this to your desired coordinates
+
+-- Function to teleport the player
+local function teleportToCoordinates()
+    local character = Player.Character
+    if character then
+        local rootPart = character:WaitForChild("HumanoidRootPart")
+        rootPart.CFrame = CFrame.new(targetPosition)
+    end
+end
+
+-- Listen for key press to trigger teleportation
+UIS.InputBegan:Connect(function(input, gameProcessed)
+    if not gameProcessed and input.KeyCode == Enum.KeyCode.N then
+        teleportToCoordinates()
+    end
+end)
