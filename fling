@@ -1,0 +1,111 @@
+
+
+local Config = {
+    Bind = Enum.KeyCode.Z,
+    Select_Color = Color3.fromRGB(0, 255, 0),
+    Prediction_Enable = true
+}
+
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+local Player = Players.LocalPlayer
+local Char = Player.Character or Player.CharacterAdded:Wait()
+local Mouse = Player:GetMouse()
+
+local Root = Char:WaitForChild("HumanoidRootPart")
+local Humanoid = Char:WaitForChild("Humanoid")
+
+local SelectionBox = Instance.new("SelectionBox", script)
+SelectionBox.Color3 = Config.Select_Color
+SelectionBox.LineThickness = 0.02
+
+local A_1 = false -- Activation toggle
+local A_2 = false -- Processing toggle
+local AltHeld = false -- Track if Alt is being held
+
+-- Listen for InputBegan to track if Left Alt is pressed
+UserInputService.InputBegan:Connect(function(Input, GPE)
+    if GPE then return end
+
+    if Input.KeyCode == Enum.KeyCode.LeftAlt then
+        AltHeld = true
+    elseif Input.KeyCode == Config.Bind then
+        if not A_2 then
+            A_1 = not A_1
+            SelectionBox.Adornee = nil
+        end
+    end
+end)
+
+-- Listen for InputEnded to detect when Left Alt is released
+UserInputService.InputEnded:Connect(function(Input)
+    if Input.KeyCode == Enum.KeyCode.LeftAlt then
+        AltHeld = false
+    end
+end)
+
+-- Update SelectionBox when the mouse moves
+Mouse.Move:Connect(function()
+    if A_1 and AltHeld then
+        if Mouse.Target then
+            if Mouse.Target.Parent:FindFirstChildOfClass("Humanoid") then
+                local Character = Mouse.Target.Parent
+                SelectionBox.Adornee = Character
+            else
+                SelectionBox.Adornee = nil
+            end
+        else
+            SelectionBox.Adornee = nil
+        end
+    else
+        SelectionBox.Adornee = nil
+    end
+end)
+
+-- Handle Left Click with Alt held
+Mouse.Button1Down:Connect(function()
+    if A_1 and AltHeld and not A_2 then
+        local Character = SelectionBox.Adornee
+
+        if Character ~= nil then
+            A_2 = true
+
+            local BodyThrust = Instance.new('BodyGyro', Char.HumanoidRootPart)
+            BodyThrust.CFrame = CFrame.Angles(math.huge, math.huge, math.huge)
+
+            local LastPos = Char.HumanoidRootPart.CFrame
+
+            while Char.HumanoidRootPart and Character.HumanoidRootPart do
+                RunService.Heartbeat:Wait()
+
+                if Character.HumanoidRootPart.Velocity.Magnitude <= 100 then
+                    if Config.Prediction_Enable then
+                        local Direction = Character.HumanoidRootPart.Position + 
+                            (Character.Humanoid.MoveDirection * Character.Humanoid.WalkSpeed) / 2 +
+                            (Vector3.new(0, Character.HumanoidRootPart.Velocity.Y / 10, 0))
+
+                        Char.HumanoidRootPart.CFrame = (CFrame.new(Direction)) * Root.CFrame.Rotation
+                    else
+                        Char.HumanoidRootPart.CFrame = Character.HumanoidRootPart.CFrame * Root.CFrame.Rotation
+                    end
+
+                    Char.HumanoidRootPart.Velocity = Vector3.new()
+                else
+                    break
+                end
+            end
+
+            BodyThrust:Destroy()
+
+            Char.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new()
+            Char.HumanoidRootPart.AssemblyAngularVelocity = Vector3.new()
+
+            Char.HumanoidRootPart.CFrame = LastPos
+            Char.Humanoid:ChangeState(Enum.HumanoidStateType.Landed)
+        end
+
+        A_2 = false
+    end
+end)
