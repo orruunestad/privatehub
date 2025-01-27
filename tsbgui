@@ -64,12 +64,12 @@ local function notify(message)
     })
 end
  
-createButton("Play!", 0.25, function()
-    loadstring(game:HttpGet"link")()
+createButton("Scripts", 0.25, function()
+    loadstring(game:HttpGet"https://raw.githubusercontent.com/orruunestad/privatehub/refs/heads/main/otherscripts")()
 	screenGui:Destroy()
 end)
  
-createButton("Join Discord", 0.45, function()
+createButton("Extra Characters", 0.45, function()
     loadstring(game:HttpGet"link")()
 	screenGui:Destroy()
 end)
