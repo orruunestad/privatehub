@@ -70,7 +70,7 @@ createButton("Scripts", 0.25, function()
 end)
  
 createButton("Extra Characters", 0.45, function()
-    loadstring(game:HttpGet"link")()
+    loadstring(game:HttpGet"https://raw.githubusercontent.com/orruunestad/privatehub/refs/heads/main/extracharacters")()
 	screenGui:Destroy()
 end)
  
