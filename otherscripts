@@ -1,0 +1,53 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local screenGui = Instance.new("ScreenGui", playerGui)
+screenGui.Name = "StyledGui"
+
+local mainFrame = Instance.new("Frame", screenGui)
+mainFrame.Size = UDim2.new(1, 0, 1, 0)
+mainFrame.Position = UDim2.new(0, 0, 0, 0)
+mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+mainFrame.BorderSizePixel = 0
+mainFrame.ClipsDescendants = true
+
+local uiCorner = Instance.new("UICorner", mainFrame)
+uiCorner.CornerRadius = UDim.new(0, 20)
+
+local buttonLayout = Instance.new("UIListLayout", mainFrame)
+buttonLayout.FillDirection = Enum.FillDirection.Horizontal
+buttonLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+buttonLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+buttonLayout.Padding = UDim.new(0, 5)
+
+local function createButton(buttonText, scriptToRun)
+    local button = Instance.new("TextButton", mainFrame)
+    button.Size = UDim2.new(0.1, 0, 1, 0)
+    button.Text = buttonText
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.BackgroundColor3 = Color3.fromRGB(0, 128, 255)
+    button.Font = Enum.Font.SourceSans
+    button.TextScaled = true
+    button.BorderSizePixel = 0
+
+    local buttonCorner = Instance.new("UICorner", button)
+    buttonCorner.CornerRadius = UDim.new(0, 10)
+
+    button.MouseButton1Click:Connect(function()
+        local func = loadstring(scriptToRun)
+        func()
+
+        screenGui:Destroy()
+    end)
+end
+
+createButton("Button 1", "")
+createButton("Button 2", "")
+createButton("Button 3", "")
+createButton("Button 4", "")
+createButton("Button 5", "")
+createButton("Button 6", "")
+createButton("Button 7", "")
+createButton("Button 8", "")
+createButton("Button 9", "")
+createButton("Button 10", "")
